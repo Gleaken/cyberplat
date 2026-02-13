@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c6sym6lwkynk6"]
+
+[ext_resource type="Script" uid="uid://1rpu0584m8am" path="res://scripts/Player.cs" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://gyx1i3m1bil3" path="res://InputComponent.cs" id="2_g2els"]
+
+[node name="player" type="Node2D" unique_id=436075513 node_paths=PackedStringArray("InputComponent")]
+script = ExtResource("1_3vyb7")
+InputComponent = NodePath("InputComponent")
+
+[node name="InputComponent" type="Node" parent="." unique_id=1598144211]
+unique_name_in_owner = true
+script = ExtResource("2_g2els")
+metadata/_custom_type_script = "uid://gyx1i3m1bil3"
