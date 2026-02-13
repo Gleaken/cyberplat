@@ -181,6 +181,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
+size = Vector2(15, 34)
+
 [node name="player" type="Node2D" unique_id=436075513 node_paths=PackedStringArray("InputComponent", "Sprite")]
 script = ExtResource("1_3vyb7")
 InputComponent = NodePath("InputComponent")
@@ -190,6 +193,7 @@ Sprite = NodePath("AnimatedSprite2D")
 sprite_frames = SubResource("SpriteFrames_y4r1p")
 animation = &"run_attack"
 autoplay = "idle"
+frame_progress = 0.79340005
 
 [node name="InputComponent" type="Node" parent="." unique_id=1598144211]
 unique_name_in_owner = true
@@ -199,3 +203,7 @@ metadata/_custom_type_script = "uid://gyx1i3m1bil3"
 [node name="MovementComponent" type="Node" parent="." unique_id=487939917]
 script = ExtResource("4_qlg0r")
 metadata/_custom_type_script = "uid://3pksd0u460j1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1787497827]
+position = Vector2(-10, 7)
+shape = SubResource("RectangleShape2D_fjrip")
