@@ -201,8 +201,11 @@ unique_name_in_owner = true
 script = ExtResource("2_g2els")
 metadata/_custom_type_script = "uid://gyx1i3m1bil3"
 
-[node name="MovementComponent" type="Node" parent="." unique_id=487939917]
+[node name="MovementComponent" type="Node" parent="." unique_id=487939917 node_paths=PackedStringArray("_controlledObject", "_sprite", "_inputComponent")]
 script = ExtResource("4_qlg0r")
+_controlledObject = NodePath("..")
+_sprite = NodePath("../AnimatedSprite2D")
+_inputComponent = NodePath("../InputComponent")
 metadata/_custom_type_script = "uid://3pksd0u460j1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1787497827]

@@ -15,24 +15,32 @@ public partial class Player : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		var direction = InputComponent.Direction;
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
 		var velocity = Velocity;
 		
 		if(!IsOnFloor())
 			velocity.Y += _gravity;
-		
-		if(direction.LengthSquared()>0)
-			PlayRunAnimation();
+		Velocity = velocity;
+		if(Velocity.Y > 0)
+			PlayJumpFallAnimation();
 		else
 			PlayIdleAnimation();
-		
-		Velocity = velocity;
 		MoveAndSlide();
 	}
-	
+
 	public void PlayRunAnimation()
 	{
 		Sprite.Play("run");
 	}
+	
+	public void PlayJumpFallAnimation()
+	{
+		Sprite.Play("jump_fall");
+	}
+
 	
 	public void PlayIdleAnimation()
 	{

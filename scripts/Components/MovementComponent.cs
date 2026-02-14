@@ -5,9 +5,13 @@ using System;
 public partial class MovementComponent : Node
 {
 	[Export]
-	private Node2D _controlledObject;
+	private CharacterBody2D _controlledObject;
 	[Export]
 	private AnimatedSprite2D _sprite;
+	[Export]
+	private InputComponent _inputComponent;
+	
+	
 	
 	public override void _Ready()
 	{
