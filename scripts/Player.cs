@@ -6,6 +6,8 @@ public partial class Player : CharacterBody2D
 	public InputComponent InputComponent { get; set; }
 	[Export]
 	public AnimatedSprite2D Sprite { get; set; }
+	
+	private float _gravity = 10;
 	public override void _Ready()
 	{
 	}
@@ -13,12 +15,18 @@ public partial class Player : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		var direction = InputComponent.Direction;
-		GD.Print(direction);
+		var velocity = Velocity;
+		
+		if(!IsOnFloor())
+			velocity.Y += _gravity;
 		
 		if(direction.LengthSquared()>0)
 			PlayRunAnimation();
 		else
 			PlayIdleAnimation();
+		
+		Velocity = velocity;
+		MoveAndSlide();
 	}
 	
 	public void PlayRunAnimation()
