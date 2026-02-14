@@ -10,7 +10,10 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public StateMachine StateMachine { get; set; }
 	[Export]
-	private float _fallSpeed = 10;
+	private float _gravity = 10;
+	[Export]
+	private float _fallSpeedMod = 2;
+
 	
 	private IState _currentState;
 	private bool _stateChanged = false;
@@ -31,6 +34,7 @@ public partial class Player : CharacterBody2D
 		var nextState = _currentState.OnStateUpdate();
 		if (nextState != _currentState.GetName())
 		{
+			_currentState.OnStateExit();
 			_currentState = StateMachine.States[nextState];
 			_stateChanged = true;
 		}
@@ -42,5 +46,5 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 	
-	public float FallSpeed => _fallSpeed;
+	public float FallSpeed => _gravity * _fallSpeedMod;
 }

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://gmj880vshj2i" path="res://assets/1 Biker/Biker_run_attack.png" id="5_smehm"]
 [ext_resource type="Script" uid="uid://cklh3hs4x0mtl" path="res://scripts/StateMachine.cs" id="8_y4r1p"]
 [ext_resource type="Script" uid="uid://cpe3tb552kgt7" path="res://scripts/States/IdleState.cs" id="9_d2wvv"]
+[ext_resource type="Script" uid="uid://ccmr1367kv3xv" path="res://scripts/States/JumpState.cs" id="11_d2wvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("2_dqkch")
@@ -119,7 +120,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_fall",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -130,7 +131,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_start",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [],
 "loop": true,
@@ -224,9 +225,18 @@ _player = NodePath("../..")
 _idleState = NodePath("../IdleState")
 metadata/_custom_type_script = "uid://dn2xuei0ly8r6"
 
-[node name="IdleState" type="Node" parent="StateMachine" unique_id=111423846 node_paths=PackedStringArray("_sprite", "_player", "_fallState")]
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=111423846 node_paths=PackedStringArray("_sprite", "_player", "_inputComponent", "_fallState", "_jumpState")]
 script = ExtResource("9_d2wvv")
 _sprite = NodePath("../../AnimatedSprite2D")
 _player = NodePath("../..")
+_inputComponent = NodePath("../../InputComponent")
 _fallState = NodePath("../FallState")
+_jumpState = NodePath("../JumpState")
 metadata/_custom_type_script = "uid://cpe3tb552kgt7"
+
+[node name="JumpState" type="Node" parent="StateMachine" unique_id=1121378253 node_paths=PackedStringArray("_sprite", "_player", "_fallState")]
+script = ExtResource("11_d2wvv")
+_sprite = NodePath("../../AnimatedSprite2D")
+_player = NodePath("../..")
+_fallState = NodePath("../FallState")
+metadata/_custom_type_script = "uid://ccmr1367kv3xv"

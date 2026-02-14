@@ -9,7 +9,11 @@ public partial class IdleState : Node, IState
 	[Export]
 	private CharacterBody2D _player;
 	[Export]
+	private InputComponent _inputComponent;
+	[Export]
 	private Node _fallState;
+	[Export]
+	private Node _jumpState;
 
 	public override void _Ready()
 	{
@@ -27,6 +31,7 @@ public partial class IdleState : Node, IState
 	public string OnStateUpdate()
 	{
 		if(!_player.IsOnFloor()) return _fallState.Name;
+		if(_player.IsOnFloor() && _inputComponent.Jump) return _jumpState.Name;
 		return GetName();
 	}
 

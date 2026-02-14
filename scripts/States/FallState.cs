@@ -9,12 +9,18 @@ public partial class FallState : Node, IState
 	[Export]
 	private CharacterBody2D _player;
 	[Export]
-	private float _fallSpeed = 10;
-	[Export]
 	private Node _idleState;
 	
 	private bool _isFalling = false;
-	
+	private float _fallSpeed = 10;
+
+	public override void _Ready()
+	{
+		if (_player == null)
+			return;
+		_fallSpeed = (_player as Player)!.FallSpeed;
+	}
+
 	public void OnStateEnter()
 	{
 		if (_isFalling)
@@ -24,7 +30,10 @@ public partial class FallState : Node, IState
 		_sprite.Play("jump_fall");
 	}
 
-	public void OnStateExit() { }
+	public void OnStateExit()
+	{
+		_isFalling = false;
+	}
 
 	public string OnStateUpdate()
 	{
