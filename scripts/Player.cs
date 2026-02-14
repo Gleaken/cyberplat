@@ -1,3 +1,4 @@
+using cyberplat.scripts;
 using Godot;
 
 public partial class Player : CharacterBody2D
@@ -6,44 +7,40 @@ public partial class Player : CharacterBody2D
 	public InputComponent InputComponent { get; set; }
 	[Export]
 	public AnimatedSprite2D Sprite { get; set; }
+	[Export]
+	public StateMachine StateMachine { get; set; }
+	[Export]
+	private float _fallSpeed = 10;
 	
-	private float _gravity = 10;
+	private IState _currentState;
+	private bool _stateChanged = false;
 	public override void _Ready()
 	{
+		_currentState = StateMachine.States["IdleState"];
+		_stateChanged = true;
 	}
 
 	public override void _Process(double delta)
 	{
-		var direction = InputComponent.Direction;
+		if (_stateChanged)
+		{
+			_currentState.OnStateEnter();
+			_stateChanged = false;
+		}
+		
+		var nextState = _currentState.OnStateUpdate();
+		if (nextState != _currentState.GetName())
+		{
+			_currentState = StateMachine.States[nextState];
+			_stateChanged = true;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		var velocity = Velocity;
-		
-		if(!IsOnFloor())
-			velocity.Y += _gravity;
-		Velocity = velocity;
-		if(Velocity.Y > 0)
-			PlayJumpFallAnimation();
-		else
-			PlayIdleAnimation();
+		_currentState.OnStateFixedUpdate(delta);
 		MoveAndSlide();
 	}
-
-	public void PlayRunAnimation()
-	{
-		Sprite.Play("run");
-	}
 	
-	public void PlayJumpFallAnimation()
-	{
-		Sprite.Play("jump_fall");
-	}
-
-	
-	public void PlayIdleAnimation()
-	{
-		Sprite.Play("idle");
-	}
+	public float FallSpeed => _fallSpeed;
 }

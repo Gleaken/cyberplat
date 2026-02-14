@@ -4,6 +4,7 @@ public interface IState
 {
     void OnStateEnter();
     void OnStateExit();
-    void OnStateUpdate();
-    void OnStateFixedUpdate();
+    string OnStateUpdate();
+    void OnStateFixedUpdate(double delta);
+    string GetName();
 }

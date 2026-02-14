@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://c6sym6lwkynk6"]
 
 [ext_resource type="Script" uid="uid://1rpu0584m8am" path="res://scripts/Player.cs" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dn2xuei0ly8r6" path="res://scripts/States/FallState.cs" id="1_ur7pv"]
 [ext_resource type="Texture2D" uid="uid://dqtrm37a3uuqx" path="res://assets/1 Biker/Biker_idle.png" id="2_dqkch"]
 [ext_resource type="Script" uid="uid://gyx1i3m1bil3" path="res://scripts/Components/InputComponent.cs" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2opcrsbvkx62" path="res://assets/1 Biker/Biker_jump.png" id="3_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bt0f7tgb4eydh" path="res://assets/1 Biker/Biker_run.png" id="3_qlg0r"]
 [ext_resource type="Script" uid="uid://3pksd0u460j1" path="res://scripts/Components/MovementComponent.cs" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://gmj880vshj2i" path="res://assets/1 Biker/Biker_run_attack.png" id="5_smehm"]
+[ext_resource type="Script" uid="uid://cklh3hs4x0mtl" path="res://scripts/StateMachine.cs" id="8_y4r1p"]
+[ext_resource type="Script" uid="uid://cpe3tb552kgt7" path="res://scripts/States/IdleState.cs" id="9_d2wvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("2_dqkch")
@@ -184,17 +187,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
 size = Vector2(15, 34)
 
-[node name="player" type="CharacterBody2D" unique_id=1982520332 node_paths=PackedStringArray("InputComponent", "Sprite")]
+[node name="player" type="CharacterBody2D" unique_id=1982520332 node_paths=PackedStringArray("InputComponent", "Sprite", "StateMachine")]
 script = ExtResource("1_3vyb7")
 InputComponent = NodePath("InputComponent")
 Sprite = NodePath("AnimatedSprite2D")
+StateMachine = NodePath("StateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1986780954]
 sprite_frames = SubResource("SpriteFrames_y4r1p")
-animation = &"run_attack"
+animation = &"jump_fall"
 autoplay = "idle"
-frame = 5
-frame_progress = 0.40406135
 
 [node name="InputComponent" type="Node" parent="." unique_id=1598144211]
 unique_name_in_owner = true
@@ -211,3 +213,20 @@ metadata/_custom_type_script = "uid://3pksd0u460j1"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1787497827]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_fjrip")
+
+[node name="StateMachine" type="Node" parent="." unique_id=413821412]
+script = ExtResource("8_y4r1p")
+
+[node name="FallState" type="Node" parent="StateMachine" unique_id=1222493902 node_paths=PackedStringArray("_sprite", "_player", "_idleState")]
+script = ExtResource("1_ur7pv")
+_sprite = NodePath("../../AnimatedSprite2D")
+_player = NodePath("../..")
+_idleState = NodePath("../IdleState")
+metadata/_custom_type_script = "uid://dn2xuei0ly8r6"
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=111423846 node_paths=PackedStringArray("_sprite", "_player", "_fallState")]
+script = ExtResource("9_d2wvv")
+_sprite = NodePath("../../AnimatedSprite2D")
+_player = NodePath("../..")
+_fallState = NodePath("../FallState")
+metadata/_custom_type_script = "uid://cpe3tb552kgt7"
