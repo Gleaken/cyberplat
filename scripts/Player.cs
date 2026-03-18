@@ -32,7 +32,7 @@ public partial class Player : CharacterBody2D
 		}
 		
 		var nextState = _currentState.OnStateUpdate();
-		if (nextState != _currentState.GetName())
+		if (nextState != _currentState.GetStateName())
 		{
 			_currentState.OnStateExit();
 			_currentState = StateMachine.States[nextState];

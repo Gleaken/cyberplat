@@ -35,12 +35,12 @@ public partial class MoveState : Node, IState
         if(_player.Velocity.X == 0)
             return _idleState.Name;
             
-        return GetName();
+        return GetStateName();
     }
 
     public void OnStateFixedUpdate(double delta)
     {
     }
 
-    public string GetName() => "MoveState";
+    public string GetStateName() => "MoveState";
 }

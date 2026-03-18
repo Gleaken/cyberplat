@@ -30,7 +30,7 @@ public partial class JumpState : Node, IState
 	public string OnStateUpdate()
 	{
 		if(_player.Velocity.Y > 0) return _fallState.Name;
-		return GetName();
+		return GetStateName();
 	}
 
 	public void OnStateFixedUpdate(double delta)
@@ -38,5 +38,5 @@ public partial class JumpState : Node, IState
 		_player.Velocity = new Vector2(_player.Velocity.X, _player.Velocity.Y + 10);
 	}
 
-	public string GetName() => "JumpState";
+	public string GetStateName() => "JumpState";
 }
