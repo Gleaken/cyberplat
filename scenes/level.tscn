@@ -9,7 +9,7 @@ size = Vector2(546, 53)
 [node name="level" type="Node2D" unique_id=1465578474]
 
 [node name="player" parent="." unique_id=1982520332 instance=ExtResource("1_2q6dc")]
-position = Vector2(358, 207)
+position = Vector2(511, 433)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=616681635]
 position = Vector2(333, 429)
@@ -19,6 +19,18 @@ position = Vector2(4, 106)
 shape = SubResource("RectangleShape2D_w8frs")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=794658854]
+position = Vector2(3.5000126, 106.99999)
+scale = Vector2(17.03125, 1.7500007)
+texture = ExtResource("2_w7c3h")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=854945693]
+position = Vector2(629, 571)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=267559109]
+position = Vector2(4, 106)
+shape = SubResource("RectangleShape2D_w8frs")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=2024471918]
 position = Vector2(3.5000126, 106.99999)
 scale = Vector2(17.03125, 1.7500007)
 texture = ExtResource("2_w7c3h")

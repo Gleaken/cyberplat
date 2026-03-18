@@ -14,6 +14,8 @@ public partial class IdleState : Node, IState
 	private Node _fallState;
 	[Export]
 	private Node _jumpState;
+	[Export]
+	private Node _moveState;
 
 	public override void _Ready()
 	{
@@ -32,12 +34,13 @@ public partial class IdleState : Node, IState
 	{
 		if(!_player.IsOnFloor()) return _fallState.Name;
 		if(_player.IsOnFloor() && _inputComponent.Jump) return _jumpState.Name;
-		return GetName();
+		if(_player.IsOnFloor() && Mathf.Abs(_inputComponent.Direction.X) > 0) return _moveState.Name;
+		return GetStateName();
 	}
 
 	public void OnStateFixedUpdate(double delta)
 	{
 	}
 
-	public string GetName() => "IdleState";
+	public string GetStateName() => "IdleState";
 }

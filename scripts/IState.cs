@@ -6,5 +6,5 @@ public interface IState
     void OnStateExit();
     string OnStateUpdate();
     void OnStateFixedUpdate(double delta);
-    string GetName();
+    string GetStateName();
 }

@@ -32,12 +32,17 @@ public partial class Player : CharacterBody2D
 		}
 		
 		var nextState = _currentState.OnStateUpdate();
-		if (nextState != _currentState.GetName())
+		if (nextState != _currentState.GetStateName())
 		{
 			_currentState.OnStateExit();
 			_currentState = StateMachine.States[nextState];
 			_stateChanged = true;
 		}
+		
+		if(Velocity.X < 0)
+			Sprite.FlipH = true;
+		if(Velocity.X > 0)
+			Sprite.FlipH = false;
 	}
 
 	public override void _PhysicsProcess(double delta)

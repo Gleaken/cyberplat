@@ -38,7 +38,7 @@ public partial class FallState : Node, IState
 	public string OnStateUpdate()
 	{
 		if (_player.IsOnFloor()) return _idleState.Name;
-		return GetName();
+		return GetStateName();
 	}
 
 	public void OnStateFixedUpdate(double delta)
@@ -46,5 +46,5 @@ public partial class FallState : Node, IState
 		_player.Velocity = new Vector2(_player.Velocity.X, _player.Velocity.Y + _fallSpeed);
 	}
 
-	public string GetName() => "FallState";
+	public string GetStateName() => "FallState";
 }

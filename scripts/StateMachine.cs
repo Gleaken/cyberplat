@@ -12,7 +12,7 @@ public partial class StateMachine : Node
 		foreach (var child in childs)
 		{
 			if (child is IState state)
-				States.Add(state.GetName(), state);
+				States.Add(state.GetStateName(), state);
 		}
 	}
 }
