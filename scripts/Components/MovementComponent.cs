@@ -19,7 +19,6 @@ public partial class MovementComponent : Node
 
 	public override void _Process(double delta)
 	{
-		var velocity = new Vector2(0, _controlledObject.Velocity.Y);
-		_controlledObject.Velocity = new Vector2(_inputComponent.Direction.X * 50, _controlledObject.Velocity.Y);
+		_controlledObject.Velocity = new Vector2(_inputComponent.Direction.X * 100, _controlledObject.Velocity.Y);
 	}
 }
