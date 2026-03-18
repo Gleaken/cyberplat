@@ -38,6 +38,11 @@ public partial class Player : CharacterBody2D
 			_currentState = StateMachine.States[nextState];
 			_stateChanged = true;
 		}
+		
+		if(Velocity.X < 0)
+			Sprite.FlipH = true;
+		if(Velocity.X > 0)
+			Sprite.FlipH = false;
 	}
 
 	public override void _PhysicsProcess(double delta)

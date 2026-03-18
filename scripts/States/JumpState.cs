@@ -10,6 +10,7 @@ public partial class JumpState : Node, IState
 	private CharacterBody2D _player;
 	[Export]
 	private Node _fallState;
+
 	
 	[Export]
 	private float _jumpSpeed = 400;
