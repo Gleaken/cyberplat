@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 [GlobalClass]
 public partial class MovementComponent : Node
@@ -10,8 +9,8 @@ public partial class MovementComponent : Node
 	private AnimatedSprite2D _sprite;
 	[Export]
 	private InputComponent _inputComponent;
-	
-	
+	[Export]
+	private float _speed = 100;
 	
 	public override void _Ready()
 	{
@@ -19,6 +18,6 @@ public partial class MovementComponent : Node
 
 	public override void _Process(double delta)
 	{
-		_controlledObject.Velocity = new Vector2(_inputComponent.Direction.X * 100, _controlledObject.Velocity.Y);
+		_controlledObject.Velocity = new Vector2(_inputComponent.Direction.X * _speed, _controlledObject.Velocity.Y);
 	}
 }

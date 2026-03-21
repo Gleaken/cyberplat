@@ -12,7 +12,7 @@ public partial class Player : CharacterBody2D
 	[Export]
 	private float _gravity = 10;
 	[Export]
-	private float _fallSpeedMod = 2;
+	private float _fallSpeedMod = 3;
 
 	
 	private IState _currentState;
