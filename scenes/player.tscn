@@ -186,8 +186,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(15, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3v2ag"]
+radius = 8.18
+height = 34.0
 
 [node name="player" type="CharacterBody2D" unique_id=1982520332 node_paths=PackedStringArray("InputComponent", "Sprite", "StateMachine")]
 script = ExtResource("1_3vyb7")
@@ -197,7 +198,7 @@ StateMachine = NodePath("StateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1986780954]
 sprite_frames = SubResource("SpriteFrames_y4r1p")
-animation = &"jump_fall"
+animation = &"run"
 autoplay = "idle"
 
 [node name="InputComponent" type="Node" parent="." unique_id=1598144211]
@@ -210,11 +211,12 @@ script = ExtResource("4_qlg0r")
 _controlledObject = NodePath("..")
 _sprite = NodePath("../AnimatedSprite2D")
 _inputComponent = NodePath("../InputComponent")
+_speed = 120.0
 metadata/_custom_type_script = "uid://3pksd0u460j1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1787497827]
 position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_fjrip")
+shape = SubResource("CapsuleShape2D_3v2ag")
 
 [node name="StateMachine" type="Node" parent="." unique_id=413821412]
 script = ExtResource("8_y4r1p")

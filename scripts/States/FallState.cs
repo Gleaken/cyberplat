@@ -12,7 +12,7 @@ public partial class FallState : Node, IState
 	private Node _idleState;
 	
 	private bool _isFalling = false;
-	private float _fallSpeed = 10;
+	private float _fallSpeed = 0;
 
 	public override void _Ready()
 	{

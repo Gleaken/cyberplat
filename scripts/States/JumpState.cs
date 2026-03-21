@@ -13,7 +13,7 @@ public partial class JumpState : Node, IState
 
 	
 	[Export]
-	private float _jumpSpeed = 400;
+	private float _jumpSpeed = 350;
 
 	public override void _Ready()
 	{
