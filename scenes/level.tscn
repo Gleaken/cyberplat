@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c6sym6lwkynk6" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://c62e7bc8v8io4" path="res://assets/1 Tiles/Tile_01.png" id="2_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://bryqkrfyxvypv" path="res://assets/gimp/tileset.png" id="3_w8frs"]
-[ext_resource type="Script" uid="uid://bwwq681bvam8q" path="res://scenes/Camera2d.cs" id="4_mx8sn"]
+[ext_resource type="Script" uid="uid://bwwq681bvam8q" path="res://scripts/Camera2d.cs" id="4_mx8sn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
 size = Vector2(546, 53)
@@ -218,3 +218,4 @@ tile_set = SubResource("TileSet_mx8sn")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2107660162 node_paths=PackedStringArray("_follow")]
 script = ExtResource("4_mx8sn")
 _follow = NodePath("../player")
+_tweenDistance = 200
