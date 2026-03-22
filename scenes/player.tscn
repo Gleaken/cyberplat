@@ -6,12 +6,14 @@
 [ext_resource type="Script" uid="uid://gyx1i3m1bil3" path="res://scripts/Components/InputComponent.cs" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2opcrsbvkx62" path="res://assets/1 Biker/Biker_jump.png" id="3_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bt0f7tgb4eydh" path="res://assets/1 Biker/Biker_run.png" id="3_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://co7vbiksheach" path="res://assets/1 Biker/Biker_punch.png" id="4_jej6c"]
 [ext_resource type="Script" uid="uid://3pksd0u460j1" path="res://scripts/Components/MovementComponent.cs" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://gmj880vshj2i" path="res://assets/1 Biker/Biker_run_attack.png" id="5_smehm"]
 [ext_resource type="Script" uid="uid://cklh3hs4x0mtl" path="res://scripts/StateMachine.cs" id="8_y4r1p"]
 [ext_resource type="Script" uid="uid://cpe3tb552kgt7" path="res://scripts/States/IdleState.cs" id="9_d2wvv"]
 [ext_resource type="Script" uid="uid://ccmr1367kv3xv" path="res://scripts/States/JumpState.cs" id="11_d2wvv"]
 [ext_resource type="Script" uid="uid://blu8k1fpilqo1" path="res://scripts/States/MoveState.cs" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://cw47phv5ioaqp" path="res://scripts/States/KickState.cs" id="14_f1ej7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("2_dqkch")
@@ -44,6 +46,30 @@ region = Rect2(0, 0, 35, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
 atlas = ExtResource("3_fjrip")
 region = Rect2(48, 0, 35, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("4_jej6c")
+region = Rect2(0, 0, 29, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
+atlas = ExtResource("4_jej6c")
+region = Rect2(49, 0, 29, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt7fs"]
+atlas = ExtResource("4_jej6c")
+region = Rect2(98, 0, 29, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
+atlas = ExtResource("4_jej6c")
+region = Rect2(147, 0, 29, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
+atlas = ExtResource("4_jej6c")
+region = Rect2(196, 0, 29, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
+atlas = ExtResource("4_jej6c")
+region = Rect2(245, 0, 29, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
 atlas = ExtResource("3_qlg0r")
@@ -134,10 +160,28 @@ animations = [{
 "name": &"jump_start",
 "speed": 3.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"new_animation_1",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf23h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt7fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqfne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl8cc")
+}],
+"loop": false,
+"name": &"kick",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -190,6 +234,9 @@ animations = [{
 radius = 8.18
 height = 32.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
+size = Vector2(12, 6)
+
 [node name="player" type="CharacterBody2D" unique_id=1982520332 node_paths=PackedStringArray("InputComponent", "Sprite", "StateMachine")]
 script = ExtResource("1_3vyb7")
 InputComponent = NodePath("InputComponent")
@@ -198,8 +245,9 @@ StateMachine = NodePath("StateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1986780954]
 sprite_frames = SubResource("SpriteFrames_y4r1p")
-animation = &"run"
+animation = &"kick"
 autoplay = "idle"
+frame = 4
 
 [node name="InputComponent" type="Node" parent="." unique_id=1598144211]
 unique_name_in_owner = true
@@ -215,7 +263,7 @@ _speed = 120.0
 metadata/_custom_type_script = "uid://3pksd0u460j1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1787497827]
-position = Vector2(0, 8)
+position = Vector2(-1, 8)
 shape = SubResource("CapsuleShape2D_3v2ag")
 
 [node name="StateMachine" type="Node" parent="." unique_id=413821412]
@@ -228,7 +276,7 @@ _player = NodePath("../..")
 _idleState = NodePath("../IdleState")
 metadata/_custom_type_script = "uid://dn2xuei0ly8r6"
 
-[node name="IdleState" type="Node" parent="StateMachine" unique_id=111423846 node_paths=PackedStringArray("_sprite", "_player", "_inputComponent", "_fallState", "_jumpState", "_moveState")]
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=111423846 node_paths=PackedStringArray("_sprite", "_player", "_inputComponent", "_fallState", "_jumpState", "_moveState", "_kickState")]
 script = ExtResource("9_d2wvv")
 _sprite = NodePath("../../AnimatedSprite2D")
 _player = NodePath("../..")
@@ -236,6 +284,7 @@ _inputComponent = NodePath("../../InputComponent")
 _fallState = NodePath("../FallState")
 _jumpState = NodePath("../JumpState")
 _moveState = NodePath("../MoveState")
+_kickState = NodePath("../KickState")
 metadata/_custom_type_script = "uid://cpe3tb552kgt7"
 
 [node name="JumpState" type="Node" parent="StateMachine" unique_id=1121378253 node_paths=PackedStringArray("_sprite", "_player", "_fallState")]
@@ -254,3 +303,16 @@ _fallState = NodePath("../FallState")
 _jumpState = NodePath("../JumpState")
 _inputComponent = NodePath("../../InputComponent")
 metadata/_custom_type_script = "uid://blu8k1fpilqo1"
+
+[node name="KickState" type="Node" parent="StateMachine" unique_id=1541846547 node_paths=PackedStringArray("_sprite", "_player", "_idleState")]
+script = ExtResource("14_f1ej7")
+_sprite = NodePath("../../AnimatedSprite2D")
+_player = NodePath("../..")
+_idleState = NodePath("../IdleState")
+metadata/_custom_type_script = "uid://cw47phv5ioaqp"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=513079416]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1942117570]
+position = Vector2(8, 10)
+shape = SubResource("RectangleShape2D_f1ej7")
