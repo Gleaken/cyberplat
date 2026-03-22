@@ -34,11 +34,10 @@ public partial class KickState : Node, IState
 
         if (_sprite.Frame == 4)
         {
-            GD.Print("Kicked!");
-            if(_sprite.FlipH)
-                _leftKick.Disabled = false;
-            else
-                _rightKick.Disabled = false;
+             if(_sprite.FlipH)
+                 _leftKick.Disabled = false;
+             else
+                 _rightKick.Disabled = false;
         }
         else
         {

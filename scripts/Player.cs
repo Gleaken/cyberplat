@@ -52,4 +52,13 @@ public partial class Player : CharacterBody2D
 	}
 	
 	public float FallSpeed => _gravity * _fallSpeedMod;
+	
+	public void OnArea2dBodyEntered(Node2D body)
+	{
+		GD.Print("Body entered");
+		var enemy = body as IEnemy;
+
+		if (enemy is null) return;
+		enemy.Hit(10);
+	}
 }

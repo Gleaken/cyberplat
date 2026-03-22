@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://bh1fvhpds0akm"]
+
+[ext_resource type="Texture2D" uid="uid://b2f4kum8lb587" path="res://assets/city_enemy/skater/Hurt.png" id="1_10xw5"]
+[ext_resource type="Script" uid="uid://cvtc3sdb0ff5x" path="res://scenes/city_enemies/CitySkater.cs" id="1_chysv"]
+[ext_resource type="Texture2D" uid="uid://v32dnxheeicr" path="res://assets/city_enemy/skater/Idle.png" id="2_chysv"]
+[ext_resource type="Texture2D" uid="uid://cbgc8mnrqxoei" path="res://assets/city_enemy/skater/Death.png" id="2_glir6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f3nl"]
+atlas = ExtResource("2_glir6")
+region = Rect2(0, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co7hh"]
+atlas = ExtResource("2_glir6")
+region = Rect2(48, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_domef"]
+atlas = ExtResource("2_glir6")
+region = Rect2(96, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3si1"]
+atlas = ExtResource("2_glir6")
+region = Rect2(144, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4k0t"]
+atlas = ExtResource("2_glir6")
+region = Rect2(192, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkxw3"]
+atlas = ExtResource("2_glir6")
+region = Rect2(240, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0o1m"]
+atlas = ExtResource("1_10xw5")
+region = Rect2(47, 0, 34, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glir6"]
+atlas = ExtResource("1_10xw5")
+region = Rect2(0, 0, 34, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm3k3"]
+atlas = ExtResource("2_chysv")
+region = Rect2(0, 0, 34, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrxdy"]
+atlas = ExtResource("2_chysv")
+region = Rect2(48, 0, 34, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a3c0"]
+atlas = ExtResource("2_chysv")
+region = Rect2(96, 0, 34, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44byy"]
+atlas = ExtResource("2_chysv")
+region = Rect2(144, 0, 34, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vou54"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f3nl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co7hh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_domef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3si1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4k0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkxw3")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0o1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0o1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glir6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0o1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0o1m")
+}],
+"loop": false,
+"name": &"hurt_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm3k3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrxdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a3c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44byy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ddlik"]
+height = 32.0
+
+[node name="CitySkater" type="CharacterBody2D" unique_id=95827853]
+texture_filter = 1
+collision_layer = 3
+collision_mask = 3
+input_pickable = true
+script = ExtResource("1_chysv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1665951614]
+sprite_frames = SubResource("SpriteFrames_vou54")
+animation = &"death"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1572344683]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_ddlik")
+
+[connection signal="input_event" from="." to="." method="OnInputEvent"]
