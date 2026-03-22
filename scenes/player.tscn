@@ -188,7 +188,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3v2ag"]
 radius = 8.18
-height = 34.0
+height = 32.0
 
 [node name="player" type="CharacterBody2D" unique_id=1982520332 node_paths=PackedStringArray("InputComponent", "Sprite", "StateMachine")]
 script = ExtResource("1_3vyb7")
@@ -215,7 +215,7 @@ _speed = 120.0
 metadata/_custom_type_script = "uid://3pksd0u460j1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1787497827]
-position = Vector2(0, 7)
+position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_3v2ag")
 
 [node name="StateMachine" type="Node" parent="." unique_id=413821412]
