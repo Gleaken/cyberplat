@@ -11,6 +11,10 @@ public partial class KickState : Node, IState
     private CharacterBody2D _player;
     [Export]
     private Node _idleState;
+    [Export]
+    private CollisionShape2D _rightKick;
+    [Export]
+    private CollisionShape2D _leftKick;
     // [Export]
     // private InputComponent _inputComponent;
     
@@ -27,6 +31,20 @@ public partial class KickState : Node, IState
     {
         if(!_sprite.IsPlaying())
             return _idleState.Name;
+
+        if (_sprite.Frame == 4)
+        {
+            GD.Print("Kicked!");
+            if(_sprite.FlipH)
+                _leftKick.Disabled = false;
+            else
+                _rightKick.Disabled = false;
+        }
+        else
+        {
+            _leftKick.Disabled = true;
+            _rightKick.Disabled = true;
+        }
         return GetStateName();
     }
 

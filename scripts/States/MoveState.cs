@@ -18,9 +18,11 @@ public partial class MoveState : Node, IState
     [Export]
     private InputComponent _inputComponent;
     
+    private bool _initFrame = false;
+    
     public void OnStateEnter()
     {
-        _sprite.Play("run");
+        _initFrame = true;
     }
 
     public void OnStateExit()
@@ -34,7 +36,10 @@ public partial class MoveState : Node, IState
             return _fallState.Name;
         if(_player.Velocity.X == 0)
             return _idleState.Name;
-            
+
+        if(_initFrame)
+            _sprite.Play("run");
+        _initFrame = false;
         return GetStateName();
     }
 
